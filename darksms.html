@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anonymous</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+    <title>Dark SMS Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,9 +15,9 @@
         body {
             min-height: 100vh;
             background: 
-                linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
+                linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
                 url('bg.jpg') center/cover no-repeat fixed;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Russo One', sans-serif;
             display: flex;
             align-items: flex-end; 
             justify-content: center;
@@ -27,85 +27,102 @@
 
         .main-container {
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
             display: flex;
             flex-direction: column;
             align-items: center;
             z-index: 10;
-            padding: 0 20px;
+            padding: 0 25px;
         }
 
-        /* Обновленный блок текста */
+        /* Анимированный, броский текст */
         .promo-text {
-            font-size: 1.1rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            line-height: 1.6;
+            font-size: 2rem; 
+            line-height: 1.1;
             color: #fff;
-            
-            /* Розовое неоновое свечение под стиль картинки */
-            text-shadow: 
-                0 0 10px #ff00c8, 
-                0 0 20px #ff00c8;
-                
-            margin-bottom: 25px;
             text-align: center;
             text-transform: uppercase;
+            margin-bottom: 35px;
+            /* Глубокое неоновое свечение */
+            text-shadow: 
+                0 0 10px #ff00c8, 
+                0 0 20px #ff00c8, 
+                0 0 40px #ff00c8;
+            animation: pulseText 2s infinite alternate;
+        }
+
+        .price-highlight {
+            color: #00f7ff;
+            font-size: 2.4rem;
+            display: block;
+            margin-top: 15px;
+            text-shadow: 
+                0 0 10px #00f7ff, 
+                0 0 30px #00f7ff,
+                0 0 50px #00f7ff;
         }
 
         .menu {
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 18px;
         }
 
+        /* Улучшенные кнопки */
         .btn {
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 65px;
-            font-size: 1rem;
-            letter-spacing: 3px;
+            min-height: 85px;
+            font-size: 1.5rem;
             text-decoration: none;
-            text-align: center;
-            font-weight: 800;
             color: #fff;
-            text-shadow: 0 0 10px #ff00c8;
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 10px;
-            border: 1px solid rgba(0, 247, 255, 0.3);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            /* Яркая граница */
+            border: 2px solid rgba(0, 247, 255, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-shadow: 0 0 10px #fff;
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
         }
 
         .btn:hover {
-            transform: scale(1.02);
-            background: rgba(255, 0, 200, 0.15);
-            box-shadow: 0 0 25px rgba(255, 0, 200, 0.4);
-            border-color: #00f7ff;
+            transform: scale(1.05) translateY(-5px);
+            background: rgba(255, 0, 200, 0.2);
+            border-color: #ff00c8;
+            box-shadow: 0 0 40px rgba(255, 0, 200, 0.6);
+            text-shadow: 0 0 15px #ff00c8;
+        }
+
+        /* Анимация пульсации для привлечения внимания */
+        @keyframes pulseText {
+            from { transform: scale(1); opacity: 0.9; }
+            to { transform: scale(1.03); opacity: 1; }
         }
 
         @media(max-width: 480px) {
-            .promo-text { font-size: 0.95rem; }
-            .btn { min-height: 60px; font-size: 0.9rem; }
+            .promo-text { font-size: 1.5rem; }
+            .price-highlight { font-size: 1.9rem; }
+            .btn { min-height: 75px; font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="main-container">
-        
         <div class="promo-text">
-            Telegram Store <br>
-            Annoimus Numbers 🇺🇦 7$=1
+            Український Магазин<br>
+            Анонімних номерів<br>
+            <span class="price-highlight">Telegram 7$ за Аккаунт</span>
         </div>
 
         <div class="menu">
-            <a href="https://t.me/elecrum_job" class="btn">INFO CHANNEL</a>
-            <a href="https://t.me/electrum_store" class="btn">OPERATOR</a>
+            <a href="https://t.me/elecrum_job" class="btn">ІНФО КАНАЛ</a>
+            <a href="https://t.me/electrum_store" class="btn">ОПЕРАТОР</a>
         </div>
     </div>
 
