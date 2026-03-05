@@ -15,28 +15,49 @@
         body {
             min-height: 100vh;
             background: 
-                linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)),
+                linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
                 url('bg.jpg') center/cover no-repeat fixed;
             font-family: 'Orbitron', sans-serif;
             display: flex;
-            
-            /* Изменено: выравниваем контент по нижней части экрана */
             align-items: flex-end; 
             justify-content: center;
-            
-            /* Отступ снизу, чтобы кнопки не прилипали к самому краю */
-            padding-bottom: 80px; 
-            padding-left: 20px;
-            padding-right: 20px;
+            padding-bottom: 40px; 
+            overflow: hidden;
         }
 
-        .menu {
+        .main-container {
             width: 100%;
             max-width: 500px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            align-items: center;
             z-index: 10;
+            padding: 0 20px;
+        }
+
+        /* Обновленный блок текста */
+        .promo-text {
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            line-height: 1.6;
+            color: #fff;
+            
+            /* Розовое неоновое свечение под стиль картинки */
+            text-shadow: 
+                0 0 10px #ff00c8, 
+                0 0 20px #ff00c8;
+                
+            margin-bottom: 25px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .menu {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .btn {
@@ -44,52 +65,48 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 85px;
-            padding: 10px 20px;
-            font-size: 1.4rem;
-            letter-spacing: 4px;
+            min-height: 65px;
+            font-size: 1rem;
+            letter-spacing: 3px;
             text-decoration: none;
             text-align: center;
             font-weight: 800;
             color: #fff;
-            
-            /* Неоновое свечение текста в стиле картинки */
-            text-shadow: 0 0 10px #ff00c8, 0 0 20px #ff00c8;
-            
-            /* Стеклянный эффект */
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 12px;
-            border: 1px solid rgba(0, 247, 255, 0.4);
+            text-shadow: 0 0 10px #ff00c8;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 247, 255, 0.3);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            
-            box-shadow: 0 0 15px rgba(255, 0, 200, 0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
         }
 
         .btn:hover {
-            transform: translateY(-5px);
+            transform: scale(1.02);
             background: rgba(255, 0, 200, 0.15);
-            box-shadow: 0 0 35px rgba(255, 0, 200, 0.6), 0 0 15px rgba(0, 247, 255, 0.5);
+            box-shadow: 0 0 25px rgba(255, 0, 200, 0.4);
             border-color: #00f7ff;
         }
 
         @media(max-width: 480px) {
-            body {
-                padding-bottom: 50px; /* Чуть выше на мобильных */
-            }
-            .btn {
-                font-size: 1.1rem;
-                min-height: 75px;
-            }
+            .promo-text { font-size: 0.95rem; }
+            .btn { min-height: 60px; font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="menu">
-        <a href="https://t.me/elecrum_job" class="btn">INFO CHANNEL</a>
-        <a href="https://t.me/electrum_store" class="btn">OPERATOR</a>
+    <div class="main-container">
+        
+        <div class="promo-text">
+            Telegram Store <br>
+            Annoimus Numbers 🇺🇦 7$=1
+        </div>
+
+        <div class="menu">
+            <a href="https://t.me/elecrum_job" class="btn">INFO CHANNEL</a>
+            <a href="https://t.me/electrum_store" class="btn">OPERATOR</a>
+        </div>
     </div>
 
 </body>
