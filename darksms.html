@@ -1,298 +1,120 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ANONYMOUS</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
-
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-
-height:100vh;
-
-background:
-linear-gradient(rgba(5,0,20,0.8),rgba(5,0,20,0.9)),
-url('bg.jpg') center/cover no-repeat fixed;
-
-font-family:'Orbitron',sans-serif;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-overflow:hidden;
-
-color:white;
-
+body {
+    height: 100vh;
+    /* Убрали темный градиент, оставили легкое затемнение для читаемости */
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
+        url('bg.jpg') center/cover no-repeat fixed;
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
-/* MATRIX CANVAS */
-
-canvas{
-position:fixed;
-top:0;
-left:0;
-z-index:0;
-opacity:0.25;
+.menu {
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
-/* контейнер кнопок */
-
-.menu{
-
-position:relative;
-
-z-index:5;
-
-width:90%;
-max-width:900px;
-
-display:flex;
-flex-direction:column;
-
-gap:50px;
-
+.btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    font-size: 1.8rem;
+    letter-spacing: 5px;
+    text-decoration: none;
+    font-weight: 800;
+    
+    /* Цвет текста и основной неон под стиль картинки */
+    color: #fff;
+    text-shadow: 0 0 10px #ff00c8, 0 0 20px #ff00c8;
+    
+    /* Прозрачный фон кнопок (стеклянный эффект) */
+    background: rgba(255, 0, 200, 0.05);
+    border-radius: 15px;
+    border: 2px solid rgba(255, 0, 200, 0.5);
+    backdrop-filter: blur(5px);
+    
+    /* Свечение кнопки */
+    box-shadow: 
+        0 0 20px rgba(255, 0, 200, 0.3),
+        inset 0 0 15px rgba(0, 247, 255, 0.2);
+    
+    transition: all 0.4s ease;
+    overflow: hidden;
 }
 
-/* 3D кнопки */
-
-.btn{
-
-position:relative;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-height:150px;
-
-font-size:2.3rem;
-
-letter-spacing:6px;
-
-text-decoration:none;
-
-color:#00fff7;
-
-border-radius:20px;
-
-background:rgba(0,0,0,0.45);
-
-border:2px solid rgba(0,255,255,0.6);
-
-box-shadow:
-
-0 0 20px #00fff7,
-0 0 60px rgba(0,255,255,0.4),
-inset 0 0 25px rgba(0,255,255,0.3);
-
-backdrop-filter:blur(10px);
-
-transition:0.4s;
-
-overflow:hidden;
-
+/* Анимированная рамка (градиент как на картинке) */
+.btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 15px;
+    padding: 2px; /* толщина рамки */
+    background: linear-gradient(90deg, #ff00c8, #00f7ff, #ff00c8);
+    background-size: 200%;
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    animation: borderMove 4s linear infinite;
 }
 
-/* неоновая рамка */
-
-.btn::after{
-
-content:"";
-
-position:absolute;
-
-inset:-3px;
-
-border-radius:22px;
-
-background:linear-gradient(
-90deg,
-#00fff7,
-#ff00c8,
-#00fff7,
-#ff00c8,
-#00fff7
-);
-
-background-size:400%;
-
-z-index:-1;
-
-animation:borderMove 6s linear infinite;
-
+/* Блик молнии */
+.btn::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(0, 247, 255, 0.4),
+        transparent
+    );
+    transform: translateX(-100%);
+    transition: 0.6s;
 }
 
-/* эффект молнии */
-
-.btn::before{
-
-content:"";
-
-position:absolute;
-
-width:100%;
-height:100%;
-
-background:linear-gradient(
-120deg,
-transparent,
-rgba(255,255,255,0.8),
-transparent
-);
-
-transform:translateX(-100%);
-
-animation:lightning 3s infinite;
-
+/* Эффекты при наведении */
+.btn:hover {
+    transform: translateY(-5px) scale(1.02);
+    background: rgba(255, 0, 200, 0.2);
+    box-shadow: 
+        0 0 40px rgba(255, 0, 200, 0.6),
+        0 0 15px rgba(0, 247, 255, 0.8);
 }
 
-/* hover эффект */
-
-.btn:hover{
-
-transform:scale(1.07);
-
-background:#00fff7;
-
-color:#000;
-
-box-shadow:
-
-0 0 90px #00fff7,
-0 0 150px #ff00c8;
-
+.btn:hover::before {
+    transform: translateX(100%);
 }
 
-/* glitch эффект */
-
-.btn span{
-
-position:relative;
-
+@keyframes borderMove {
+    0% { background-position: 0%; }
+    100% { background-position: 200%; }
 }
 
-.btn:hover span{
-
-animation:glitch 0.4s linear infinite;
-
+@media(max-width:700px) {
+    .btn {
+        height: 80px;
+        font-size: 1.3rem;
+        letter-spacing: 3px;
+    }
 }
-
-/* анимации */
-
-@keyframes lightning{
-
-0%{transform:translateX(-100%)}
-50%{transform:translateX(120%)}
-100%{transform:translateX(120%)}
-
-}
-
-@keyframes borderMove{
-
-0%{background-position:0%}
-100%{background-position:400%}
-
-}
-
-@keyframes glitch{
-
-0%{transform:translate(0)}
-20%{transform:translate(-2px,2px)}
-40%{transform:translate(2px,-2px)}
-60%{transform:translate(-2px,0)}
-80%{transform:translate(2px,2px)}
-100%{transform:translate(0)}
-
-}
-
-/* мобильная версия */
-
-@media(max-width:700px){
-
-.btn{
-height:110px;
-font-size:1.6rem;
-letter-spacing:4px;
-}
-
-}
-
 </style>
-</head>
-
-<body>
-
-<canvas id="matrix"></canvas>
-
-<div class="menu">
-
-<a href="https://t.me/elecrum_job" class="btn">
-<span>INFO CHANNEL</span>
-</a>
-
-<a href="https://t.me/electrum_store" class="btn">
-<span>OPERATOR</span>
-</a>
-
-</div>
-
-<script>
-
-/* MATRIX EFFECT */
-
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
-
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
-
-const letters = "01";
-const fontSize = 14;
-const columns = canvas.width/fontSize;
-
-const drops = [];
-
-for(let x = 0; x < columns; x++)
-drops[x] = 1;
-
-function draw(){
-
-ctx.fillStyle = "rgba(0,0,0,0.05)";
-ctx.fillRect(0,0,canvas.width,canvas.height);
-
-ctx.fillStyle = "#00fff7";
-ctx.font = fontSize + "px monospace";
-
-for(let i = 0; i < drops.length; i++){
-
-const text = letters.charAt(Math.floor(Math.random()*letters.length));
-
-ctx.fillText(text,i*fontSize,drops[i]*fontSize);
-
-if(drops[i]*fontSize > canvas.height && Math.random() > 0.975)
-drops[i] = 0;
-
-drops[i]++;
-
-}
-
-}
-
-setInterval(draw,33);
-
-</script>
-
-</body>
-</html>
