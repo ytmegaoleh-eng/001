@@ -3,126 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark SMS Store</title>
-    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <title>Dark SMS Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --neon-pink: #ff00c8;
+            --neon-blue: #00f7ff;
+            --glass-bg: rgba(0, 0, 0, 0.75);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased; /* Улучшение рендеринга текста */
         }
 
         body {
             min-height: 100vh;
             background: 
-                linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
+                linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%),
                 url('bg.jpg') center/cover no-repeat fixed;
-            font-family: 'Russo One', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             display: flex;
             align-items: flex-end; 
             justify-content: center;
-            padding-bottom: 40px; 
+            padding-bottom: 20px;
             overflow: hidden;
         }
 
         .main-container {
             width: 100%;
-            max-width: 600px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            max-width: 480px;
             z-index: 10;
-            padding: 0 25px;
+            padding: 0 15px;
+            /* Анимация появления всей панели */
+            animation: slideUp 1s ease-out;
         }
 
-        /* Анимированный, броский текст */
-        .promo-text {
-            font-size: 2rem; 
-            line-height: 1.1;
-            color: #fff;
+        /* Карточка с текстом - максимальный контраст и чистота */
+        .info-card {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px 15px;
+            margin-bottom: 15px;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .promo-text {
+            font-size: 1.1rem;
+            font-weight: 300;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
             text-transform: uppercase;
-            margin-bottom: 35px;
-            /* Глубокое неоновое свечение */
-            text-shadow: 
-                0 0 10px #ff00c8, 
-                0 0 20px #ff00c8, 
-                0 0 40px #ff00c8;
-            animation: pulseText 2s infinite alternate;
+            letter-spacing: 3px;
+        }
+
+        .promo-text b {
+            font-weight: 700;
+            color: #fff;
+            display: block;
         }
 
         .price-highlight {
-            color: #00f7ff;
-            font-size: 2.4rem;
-            display: block;
             margin-top: 15px;
-            text-shadow: 
-                0 0 10px #00f7ff, 
-                0 0 30px #00f7ff,
-                0 0 50px #00f7ff;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--neon-blue), #fff, var(--neon-blue));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(0, 247, 255, 0.5));
         }
 
+        /* Кнопки "12K Quality" */
         .menu {
-            width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 12px;
         }
 
-        /* Улучшенные кнопки */
         .btn {
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 85px;
-            font-size: 1.5rem;
+            height: 65px;
+            font-size: 1rem;
+            font-weight: 700;
             text-decoration: none;
             color: #fff;
-            background: rgba(255, 255, 255, 0.05);
+            letter-spacing: 2px;
+            background: rgba(255, 255, 255, 0.03);
             border-radius: 15px;
-            /* Яркая граница */
-            border: 2px solid rgba(0, 247, 255, 0.6);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-shadow: 0 0 10px #fff;
-            box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            transition: 0.4s all;
+            overflow: hidden;
+        }
+
+        /* Эффект свечения краев при наведении */
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
         }
 
         .btn:hover {
-            transform: scale(1.05) translateY(-5px);
-            background: rgba(255, 0, 200, 0.2);
-            border-color: #ff00c8;
-            box-shadow: 0 0 40px rgba(255, 0, 200, 0.6);
-            text-shadow: 0 0 15px #ff00c8;
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 25px rgba(0, 247, 255, 0.3);
         }
 
-        /* Анимация пульсации для привлечения внимания */
-        @keyframes pulseText {
-            from { transform: scale(1); opacity: 0.9; }
-            to { transform: scale(1.03); opacity: 1; }
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-op:hover {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 25px rgba(255, 0, 200, 0.3);
+        }
+
+        /* Анимации */
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         @media(max-width: 480px) {
-            .promo-text { font-size: 1.5rem; }
-            .price-highlight { font-size: 1.9rem; }
-            .btn { min-height: 75px; font-size: 1.2rem; }
+            .promo-text { font-size: 0.9rem; }
+            .price-highlight { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="main-container">
-        <div class="promo-text">
-            Український Магазин<br>
-            Анонімних номерів<br>
-            <span class="price-highlight">Telegram 7$ за Аккаунт</span>
+        
+        <div class="info-card">
+            <div class="promo-text">
+                Український Магазин<br>
+                <b>Анонімних номерів</b>
+                <span class="price-highlight">Telegram 7$ / Аккаунт</span>
+            </div>
         </div>
 
         <div class="menu">
             <a href="https://t.me/elecrum_job" class="btn">ІНФО КАНАЛ</a>
-            <a href="https://t.me/electrum_store" class="btn">ОПЕРАТОР</a>
+            <a href="https://t.me/electrum_store" class="btn btn-op">ОПЕРАТОР</a>
         </div>
     </div>
 
