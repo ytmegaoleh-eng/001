@@ -3,90 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark SMS Premium</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700;900&display=swap" rel="stylesheet">
+    <title>Dark SMS Premium 12K</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --neon-pink: #ff00c8;
-            --neon-blue: #00f7ff;
-            --glass-bg: rgba(0, 0, 0, 0.75);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-font-smoothing: antialiased; /* Улучшение рендеринга текста */
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
             min-height: 100vh;
             background: 
-                linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%),
+                linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 50%, transparent 100%),
                 url('bg.jpg') center/cover no-repeat fixed;
             font-family: 'Montserrat', sans-serif;
             display: flex;
             align-items: flex-end; 
             justify-content: center;
-            padding-bottom: 20px;
+            padding-bottom: 30px;
             overflow: hidden;
         }
 
         .main-container {
             width: 100%;
-            max-width: 480px;
+            max-width: 520px;
             z-index: 10;
-            padding: 0 15px;
-            /* Анимация появления всей панели */
-            animation: slideUp 1s ease-out;
+            padding: 0 20px;
         }
 
-        /* Карточка с текстом - максимальный контраст и чистота */
+        /* --- КОМПАКТНАЯ ПЛАШКА С БЕЛОЙ ОБВОДКОЙ --- */
         .info-card {
-            background: var(--glass-bg);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 25px 15px;
-            margin-bottom: 15px;
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.4); /* Тонкая белая обводка */
+            padding: 12px 5px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(20px);
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 30px rgba(0,0,0,1);
         }
 
         .promo-text {
-            font-size: 1.1rem;
-            font-weight: 300;
-            line-height: 1.5;
-            color: rgba(255, 255, 255, 0.9);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        .promo-text b {
-            font-weight: 700;
             color: #fff;
-            display: block;
+            text-transform: uppercase;
+            line-height: 1.2;
+            letter-spacing: 0.5px;
         }
 
-        .price-highlight {
-            margin-top: 15px;
-            font-size: 1.8rem;
+        .promo-text span { display: block; font-size: 1.15rem; font-weight: 800; }
+        
+        .price-line {
+            margin-top: 5px;
+            font-size: 1.35rem !important;
             font-weight: 900;
-            background: linear-gradient(90deg, var(--neon-blue), #fff, var(--neon-blue));
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 3s linear infinite;
-            display: block;
-            filter: drop-shadow(0 0 10px rgba(0, 247, 255, 0.5));
+            color: #00f7ff;
+            text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
         }
 
-        /* Кнопки "12K Quality" */
+        /* --- ГЛЯНЦЕВЫЕ 3D КНОПКИ --- */
         .menu {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 18px;
         }
 
         .btn {
@@ -94,59 +74,66 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 65px;
-            font-size: 1rem;
-            font-weight: 700;
+            height: 80px; /* Увеличенная высота */
+            font-size: 1.4rem; /* Крупный шрифт */
+            font-weight: 900;
             text-decoration: none;
             color: #fff;
             letter-spacing: 2px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            transition: 0.4s all;
+            border-radius: 20px;
+            
+            /* Эффект жидкого глянца и 3D объема */
+            background: linear-gradient(180deg, 
+                rgba(255,255,255,0.15) 0%, 
+                rgba(255,255,255,0.05) 50%, 
+                rgba(0,0,0,0.3) 100%);
+            
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            
+            /* Сложный 3D эффект шрифта */
+            text-shadow: 
+                0 1px 0 #ccc, 
+                0 2px 0 #c9c9c9, 
+                0 3px 0 #bbb, 
+                0 4px 0 #b9b9b9, 
+                0 10px 10px rgba(0,0,0,0.6);
+            
+            box-shadow: 
+                0 10px 20px rgba(0,0,0,0.4),
+                inset 0 2px 15px rgba(255,255,255,0.1);
+            
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             overflow: hidden;
         }
 
-        /* Эффект свечения краев при наведении */
-        .btn::before {
+        /* Блик жидкого глянца */
+        .btn::after {
             content: '';
             position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
+            top: 0; left: 0;
+            width: 100%; height: 50%;
+            background: linear-gradient(rgba(255,255,255,0.1), transparent);
+            pointer-events: none;
         }
 
         .btn:hover {
-            transform: translateY(-3px);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 25px rgba(0, 247, 255, 0.3);
-        }
-
-        .btn:hover::before {
-            left: 100%;
+            transform: translateY(-5px) scale(1.02);
+            border-color: #00f7ff;
+            box-shadow: 0 15px 30px rgba(0, 247, 255, 0.3);
+            text-shadow: 0 0 15px #00f7ff;
         }
 
         .btn-op:hover {
-            border-color: var(--neon-pink);
-            box-shadow: 0 0 25px rgba(255, 0, 200, 0.3);
-        }
-
-        /* Анимации */
-        @keyframes shine {
-            to { background-position: 200% center; }
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(100px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            border-color: #ff00c8;
+            box-shadow: 0 15px 30px rgba(255, 0, 200, 0.3);
+            text-shadow: 0 0 15px #ff00c8;
         }
 
         @media(max-width: 480px) {
-            .promo-text { font-size: 0.9rem; }
-            .price-highlight { font-size: 1.5rem; }
+            .promo-text span { font-size: 0.95rem; }
+            .price-line { font-size: 1.1rem !important; }
+            .btn { height: 70px; font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -156,9 +143,9 @@
         
         <div class="info-card">
             <div class="promo-text">
-                Український Магазин<br>
-                <b>Анонімних номерів</b>
-                <span class="price-highlight">Telegram 7$ / Аккаунт</span>
+                <span>УКРАЇНСЬКИЙ МАГАЗИН</span>
+                <span>АНОНІМНИХ НОМЕРІВ</span>
+                <span class="price-line">TELEGRAM - 7$ АККАУНТ</span>
             </div>
         </div>
 
